@@ -10,7 +10,11 @@ module.exports = {
   getAllUser: async function(accessToken) {
     const client = getAuthenticatedClient(accessToken);
 
-    const user = await client.api('/users').get();
+    const user = await client.api("/users")
+    .select('displayName,mail,jobTitle,givenName,surname,mobilePhone')
+    .orderby('displayName DESC')
+    .top(100)
+    .get();
     return user;
   },
   getEvents: async function(accessToken) {

@@ -30,7 +30,9 @@ router.get('/',
           // Get the events
           var alluser = await graph.getAllUser(accessToken);
           params.alluser = alluser.value;
-          params.usertxt = JSON.stringify(alluser)
+          params.usertxt = JSON.stringify( params.alluser)
+            
+
         } catch (err) {
           req.flash('error_msg', {
             message: 'Could not fetch events',
